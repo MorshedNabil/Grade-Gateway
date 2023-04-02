@@ -144,6 +144,9 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Enter your Password"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pass01KeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="name01">
           <Properties>

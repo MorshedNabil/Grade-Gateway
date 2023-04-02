@@ -44,6 +44,7 @@ public class SignUp extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Grade Gateway\n");
 
         jPanel1.setBackground(new java.awt.Color(53, 99, 91));
 

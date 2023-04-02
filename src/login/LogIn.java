@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package login;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Gigabyte
@@ -58,6 +61,11 @@ public class LogIn extends javax.swing.JFrame {
         jLabel2.setText("Password      :");
 
         pass01.setToolTipText("Enter your Password");
+        pass01.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pass01KeyPressed(evt);
+            }
+        });
 
         name01.setToolTipText("Enter your User ID");
 
@@ -161,7 +169,7 @@ public class LogIn extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(m3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -186,8 +194,7 @@ public class LogIn extends javax.swing.JFrame {
         // another jFrame will open
         SignUp newframe = new SignUp();
         newframe.show();// to open new JFrame
-        dispose();
-         // to close current JFrame        
+        dispose();// to close current JFrame        
     }//GEN-LAST:event_b2ActionPerformed
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
@@ -195,20 +202,15 @@ public class LogIn extends javax.swing.JFrame {
         String name, pass;
         name = name01.getText();
         pass = pass01.getText();
-        
-        if(name.equals("") && pass.equals(""))
-        {
+
+        if (name.equals("") && pass.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup User ID and Password properly.", "Message", 2);
-        }
-        else if(name.equals(""))
-        {
+        } else if (name.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup User ID properly.", "Message", 2);
-        }
-        else if(pass.equals(""))
-        {
+        } else if (pass.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup Password properly.", "Message", 2);
         }
-        // for login if user gave any id and pass
+        // To login, if user gave any id and pass
         if (name.length() != 0 && pass.length() != 0) {
             try {
                 FileReader fr = new FileReader("Myfile.txt");
@@ -218,13 +220,13 @@ public class LogIn extends javax.swing.JFrame {
                 String name_x = scan.nextLine();
                 String pass_x = scan.nextLine();
 
-                if (name.equals(name_x) && pass.equals(pass_x))
-                {
+                if (name.equals(name_x) && pass.equals(pass_x)) {
                     // new Jframe will open from here
-                    JOptionPane.showMessageDialog(null, "Yayyy it works!!", "Message", 1);    
-                } 
-                else 
-                {
+                    WorkBench wbench = new WorkBench();
+                    wbench.show();
+                    scan.close();
+                    dispose(); // login will dispose here...
+                } else {
                     JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Message", 2);
                 }
                 scan.close();
@@ -234,17 +236,14 @@ public class LogIn extends javax.swing.JFrame {
                         "Message", 2);
             }
         }
-          
+
     }//GEN-LAST:event_b1ActionPerformed
 
     private void jcheck_01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheck_01ActionPerformed
         // TODO add your handling code here:
-        if(jcheck_01.isSelected())
-        {
-            pass01.setEchoChar((char)0);
-        }
-        else 
-        {
+        if (jcheck_01.isSelected()) {
+            pass01.setEchoChar((char) 0);
+        } else {
             pass01.setEchoChar('*');
         }
     }//GEN-LAST:event_jcheck_01ActionPerformed
@@ -253,6 +252,41 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_b3ActionPerformed
+
+    private void pass01KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass01KeyPressed
+        // TODO add your handling code here:
+        String name, pass;
+        name = name01.getText();
+        pass = pass01.getText();
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (name.length() != 0 && pass.length() != 0) {
+                try {
+                    FileReader fr = new FileReader("Myfile.txt");
+                    BufferedReader br = new BufferedReader(fr);
+                    Scanner scan = new Scanner(br);
+
+                    String name_x = scan.nextLine();
+                    String pass_x = scan.nextLine();
+
+                    if (name.equals(name_x) && pass.equals(pass_x)) {
+                        // new Jframe will open from here
+                        WorkBench wbench = new WorkBench();
+                        wbench.show();
+                        scan.close();
+                        dispose(); // login will dispose here...
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Message", 2);
+                    }
+                    scan.close();
+
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Sorry You haven't create an ID. Please Sign Up first",
+                            "Message", 2);
+                }
+            }
+        }
+    }//GEN-LAST:event_pass01KeyPressed
 
     /**
      * @param args the command line arguments
