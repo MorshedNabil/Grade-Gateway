@@ -193,8 +193,8 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         // another jFrame will open
         SignUp newframe = new SignUp();
-        // to open new JFrame
-        // to close current JFrame        
+        newframe.show();// to open new JFrame
+        dispose();// to close current JFrame        
     }//GEN-LAST:event_b2ActionPerformed
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
