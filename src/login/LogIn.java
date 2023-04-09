@@ -199,28 +199,36 @@ public class LogIn extends javax.swing.JFrame {
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
         // TODO add your handling code here:
-        String name, pass;
-        name = name01.getText();
+        String userName, pass;
+        userName = name01.getText();
         pass = pass01.getText();
 
-        if (name.equals("") && pass.equals("")) {
+        if (userName.equals("") && pass.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup User ID and Password properly.", "Message", 2);
-        } else if (name.equals("")) {
+        } else if (userName.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup User ID properly.", "Message", 2);
         } else if (pass.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fillup Password properly.", "Message", 2);
         }
         // To login, if user gave any id and pass
-        if (name.length() != 0 && pass.length() != 0) {
+        if (userName.length() != 0 && pass.length() != 0) {
             try {
-                FileReader fr = new FileReader("Myfile.txt");
+                FileReader fr = new FileReader("Registration.txt");
                 BufferedReader br = new BufferedReader(fr);
                 Scanner scan = new Scanner(br);
+                
+                String info = "";
+                while(scan.hasNextLine())
+                {
+                    info = info.concat(scan.nextLine() + "\n");
+                }
+                String[] s2 = info.split("\n");
+                System.out.println(s2);
 
-                String name_x = scan.nextLine();
-                String pass_x = scan.nextLine();
+                String userName_x = s2[2];
+                String pass_x = s2[3];
 
-                if (name.equals(name_x) && pass.equals(pass_x)) {
+                if (userName.equals(userName_x) && pass.equals(pass_x)) {
                     // new Jframe will open from here
                     WorkBench wbench = new WorkBench();
                     wbench.show();

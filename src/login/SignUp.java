@@ -1,9 +1,11 @@
 package login;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -11,12 +13,10 @@ import javax.swing.JOptionPane;
 
 public class SignUp extends javax.swing.JFrame {
 
-    
     public SignUp() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,11 +52,6 @@ public class SignUp extends javax.swing.JFrame {
 
         in1.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         in1.setToolTipText("Enter your name");
-        in1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in1ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(229, 241, 227));
@@ -76,19 +71,9 @@ public class SignUp extends javax.swing.JFrame {
 
         in2.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         in2.setToolTipText("Enter your email address or mobile number");
-        in2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in2ActionPerformed(evt);
-            }
-        });
 
         in3.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         in3.setToolTipText("Enter your user ID");
-        in3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in3ActionPerformed(evt);
-            }
-        });
 
         jCheckBox1.setBackground(new java.awt.Color(53, 99, 91));
         jCheckBox1.setFont(new java.awt.Font("Courier New", 0, 13)); // NOI18N
@@ -115,6 +100,11 @@ public class SignUp extends javax.swing.JFrame {
 
         in5.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         in5.setToolTipText("Enter your confirm password");
+        in5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                in5KeyPressed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(163, 205, 158));
         jButton1.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
@@ -209,40 +199,20 @@ public class SignUp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void in1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in1ActionPerformed
-
-    private void in2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in2ActionPerformed
-
-    private void in3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in3ActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_in3ActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        if(jCheckBox1.isSelected())
-        {
-            in4.setEchoChar((char)0);
-        }
-        else 
-        {
+        if (jCheckBox1.isSelected()) {
+            in4.setEchoChar((char) 0);
+        } else {
             in4.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
-        if(jCheckBox2.isSelected())
-        {
-            in5.setEchoChar((char)0);
-        }
-        else 
-        {
+        if (jCheckBox2.isSelected()) {
+            in5.setEchoChar((char) 0);
+        } else {
             in5.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox2ActionPerformed
@@ -254,41 +224,77 @@ public class SignUp extends javax.swing.JFrame {
         user = in3.getText();
         pass1 = in4.getText();
         pass2 = in5.getText();
-        
-        if(0 == in1.getText().length() || 0 == in2.getText().length() || 0 == in3.getText().length() || 0 == in4.getText().length() || 0 == in5.getText().length())
-        {
-            JOptionPane.showMessageDialog(null, "Registration Failed.\r\nCompleter your form, try again.","Registration error!",2);
-            
-        }
-            
-        else if(!in4.getText().equals(in5.getText()))
-        {
-            JOptionPane.showMessageDialog(null, "Registration Failed.\r\nDon't match password, try again.","Registration error!",2);
-        }
-        else{
-            Icon icon;
+
+        if (0 == in1.getText().length() || 0 == in2.getText().length() || 0 == in3.getText().length() || 0 == in4.getText().length() || 0 == in5.getText().length()) {
+            JOptionPane.showMessageDialog(null, "Registration Failed.\r\nCompleter your form, try again.", "Registration error!", 2);
+
+        } else if (!in4.getText().equals(in5.getText())) {
+            JOptionPane.showMessageDialog(null, "Registration Failed.\r\nDon't match password, try again.", "Registration error!", 2);
+        } else {
             //JOptionPane.showMessageDialog(null, "Your registration is complete.","Registration completed.",1);
-            File loc = new File("SignUpInfo");
-            loc.mkdir();
+            //File loc = new File("SignUpInfo");
+            //loc.mkdir();
             try {
-                try (FileWriter Information = new FileWriter("Registration.txt")) {
-                    Information.write(name);
-                    Information.write("\r\n"+email);
-                    Information.write("\r\n"+user);
-                    Information.write("\r\n"+pass1);
-                    Information.write("\r\n"+pass2);
-                    
-                }
-                
-            } catch (FileNotFoundException e) {
+                FileWriter Information = new FileWriter("Registration.txt");
+                PrintWriter info = new PrintWriter(Information);
+                info.write(name);
+                info.write("\r\n" + email);
+                info.write("\r\n" + user);
+                info.write("\r\n" + pass1);
+                info.write("\r\n" + pass2);
+
+                info.close();
+                // will transfer to SelectCourse from here
+                SelectCourse course = new SelectCourse();
+                course.show();
+                dispose();
+            } catch (Exception e) {
                 System.out.println(e);
-            } catch (IOException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void in5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_in5KeyPressed
+        // TODO add your handling code here:
+        String name, email, user, pass1, pass2;
+        name = in1.getText();
+        email = in2.getText();
+        user = in3.getText();
+        pass1 = in4.getText();
+        pass2 = in5.getText();
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (0 == in1.getText().length() || 0 == in2.getText().length() || 0 == in3.getText().length() || 0 == in4.getText().length() || 0 == in5.getText().length()) {
+                JOptionPane.showMessageDialog(null, "Registration Failed.\r\nCompleter your form, try again.", "Registration error!", 2);
+
+            } else if (!in4.getText().equals(in5.getText())) {
+                JOptionPane.showMessageDialog(null, "Registration Failed.\r\nDon't match password, try again.", "Registration error!", 2);
+            } else {
+                //JOptionPane.showMessageDialog(null, "Your registration is complete.","Registration completed.",1);
+                //File loc = new File("SignUpInfo");
+                //loc.mkdir();
+                try {
+                    FileWriter Information = new FileWriter("Registration.txt");
+                    PrintWriter info = new PrintWriter(Information);
+                    info.write(name);
+                    info.write("\r\n" + email);
+                    info.write("\r\n" + user);
+                    info.write("\r\n" + pass1);
+                    info.write("\r\n" + pass2);
+
+                    info.close();
+                    // will transfer to SelectCourse from here
+                    SelectCourse course = new SelectCourse();
+                    course.show();
+                    dispose();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }//GEN-LAST:event_in5KeyPressed
 
     /**
      * @param args the command line arguments
