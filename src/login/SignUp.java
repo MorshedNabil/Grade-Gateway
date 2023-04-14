@@ -46,7 +46,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Courier New", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(229, 241, 227));
-        jLabel1.setText("Creater Account");
+        jLabel1.setText("Create Account");
 
         jLabel2.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(229, 241, 227));
