@@ -5,6 +5,10 @@
  */
 package login;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
 /**
  *
  * @author Gigabyte
@@ -124,7 +128,27 @@ public class SelectCourse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-        // TODO add your handling code here:
+      
+        String input = course_f.getText();
+        String[] individual = input.split(",");
+        for (String s : individual) {
+            try {
+                /*PrintWriter writer = new PrintWriter(new FileWriter( s + ".txt"));
+                writer.println(s.trim());
+                writer.close(); */
+                File file1 = new File(s.trim()+".txt");
+                file1.createNewFile();                
+               
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error saving string to file: " + ex.getMessage());
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Welcome to Grade Gateway" );
+        WorkBench wbench2 = new WorkBench();
+        wbench2.show();
+        dispose();
+        
+// TODO add your andling code here:
     }//GEN-LAST:event_b1ActionPerformed
 
     /**

@@ -165,9 +165,6 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Enter your name"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="in1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -220,9 +217,6 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Enter your email address or mobile number"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="in2ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="in3">
           <Properties>
@@ -231,9 +225,6 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Enter your user ID"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="in3ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox1">
           <Properties>
@@ -284,6 +275,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Enter your confirm password"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="in5KeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
