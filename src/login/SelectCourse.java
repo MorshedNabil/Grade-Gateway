@@ -7,7 +7,7 @@ package login;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.util.*;
 import java.io.*;
 /**
  *
@@ -131,29 +131,35 @@ public class SelectCourse extends javax.swing.JFrame {
       
         String input = course_f.getText();
         String[] individual = input.split(",");
-        for (String s : individual) {
+        String[] individual2 = new String[10];//have to declare a initial value of the array so we are giving 10
+        
+        for (int i = 0; i < individual.length; i++) {
             try {
-                /*PrintWriter writer = new PrintWriter(new FileWriter( s + ".txt"));
-                writer.println(s.trim());
-                writer.close(); */
-                File file1 = new File(s.trim()+".txt");
-                file1.createNewFile();                
-               
+                String s = individual[i].trim();
+                File file1 = new File(s + ".txt");
+                file1.createNewFile();   // Creating files using name the user have given             
+                
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error saving string to file: " + ex.getMessage());
             }
         }
-        JOptionPane.showMessageDialog(null, "Welcome to Grade Gateway" );
-        WorkBench wbench2 = new WorkBench();
-        wbench2.show();
-        dispose();
+        for(int i = 0; i < individual.length; i++)
+        {
+            individual2[i] = individual[i].trim();
+        }
         
+        WorkBench wbench = new WorkBench(individual2); // transfering the file names into workbench to set it into combobox
+        wbench.setVisible(true);
+        dispose();
+        JOptionPane.showMessageDialog(null, "Welcome to Grade Gateway" );
+        
+        // WorkBench will be open from here
 // TODO add your andling code here:
     }//GEN-LAST:event_b1ActionPerformed
 
     /**
      * @param args the command line arguments
-     */
+    */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
