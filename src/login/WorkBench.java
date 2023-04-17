@@ -5,13 +5,13 @@
  */
 package login;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.IO;
 import java.util.*;
 import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
 /**
  *
  * @author MustafiZ
@@ -21,10 +21,19 @@ public class WorkBench extends javax.swing.JFrame {
     /**
      * Creates new form WorkBench
      */
+    String[] course = new String[10]; //global variable
     public WorkBench() {
         initComponents();
     }
-
+    public WorkBench(String[] msg){
+        initComponents();
+        
+        for(int i = 0; i < msg.length; i++)
+        {
+            course[i] = msg[i];
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,44 +137,24 @@ public class WorkBench extends javax.swing.JFrame {
         in5.setBackground(new java.awt.Color(240, 240, 240));
         in5.setForeground(new java.awt.Color(0, 153, 102));
         in5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Femal", "Other" }));
-        in5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in5ActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
         jLabel6.setText("CT-01_Assi_Pre :");
 
         in6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        in6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in6ActionPerformed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("CT-02_Assi_pre : ");
 
         in7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        in7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in7ActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Mid Exam       :");
 
         in8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        in8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                in8ActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(240, 240, 240));
@@ -191,11 +180,6 @@ public class WorkBench extends javax.swing.JFrame {
         out2.setEditable(false);
         out2.setBackground(new java.awt.Color(82, 148, 113));
         out2.setBorder(null);
-        out2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                out2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -304,7 +288,11 @@ public class WorkBench extends javax.swing.JFrame {
 
         jComboBox2.setBackground(new java.awt.Color(163, 205, 158));
         jComboBox2.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -314,7 +302,7 @@ public class WorkBench extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addGap(34, 34, 34)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -335,7 +323,7 @@ public class WorkBench extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "CT-01_Assi_pre", "CT-02_Assi_pre", "Mid", "Final", "Attendence", "Total", "Grade"
+                "ID", "Name", "CT-01/Assignment", "CT-02/Assignment", "Mid", "Final", "Attendence", "Total", "Grade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -347,15 +335,6 @@ public class WorkBench extends javax.swing.JFrame {
             }
         });
         t1.setName(""); // NOI18N
-        t1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                t1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jScrollPane1.setViewportView(t1);
         if (t1.getColumnModel().getColumnCount() > 0) {
             t1.getColumnModel().getColumn(0).setMinWidth(160);
@@ -388,7 +367,7 @@ public class WorkBench extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -497,115 +476,103 @@ public class WorkBench extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void in5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in5ActionPerformed
-
-    private void in7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in7ActionPerformed
-
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-         
+
         //Totel and Grade @@@@@@@@@@@@@@@@@@@@
-        String s1,s2,s3,s4,s5, msg;
-        s1=in6.getText();
-        s2=in7.getText();
-        s3=in8.getText();
-        s4=in9.getText();
-        s5=in10.getText();
-        
-        double Total, a1,a2,a3,a4,a5;
-        a1= Double.parseDouble(s1);
-        a2= Double.parseDouble(s2);
-        a3= Double.parseDouble(s3);
-        a4= Double.parseDouble(s4);
-        a5= Double.parseDouble(s5);
-        Total = a1+a2+a3+a4+a5;
-        msg= Total+"";
+        String s1, s2, s3, s4, s5, msg;
+        s1 = in6.getText();
+        s2 = in7.getText();
+        s3 = in8.getText();
+        s4 = in9.getText();
+        s5 = in10.getText();
+
+        double Total, a1, a2, a3, a4, a5;
+        a1 = Double.parseDouble(s1);
+        a2 = Double.parseDouble(s2);
+        a3 = Double.parseDouble(s3);
+        a4 = Double.parseDouble(s4);
+        a5 = Double.parseDouble(s5);
+        Total = a1 + a2 + a3 + a4 + a5;
+        msg = Total + "";
         out1.setText(msg);
-        
-       if(Total>80)
-       out2.setText("A+");
-       else if (Total>74||Total<79)
-           out2.setText("A");
-       else if (Total>69||Total<75)
-           out2.setText("A-");
-       else if (Total>64||Total<70)
-           out2.setText("B+");
-       else if (Total>59||Total<65)
-           out2.setText("B");
-       else if (Total>54||Total<60)
-           out2.setText("B-");
-       else if (Total>49||Total<55)
-           out2.setText("C+");
-       else if (Total>39||Total<50)
-           out2.setText("C");
-       else if (Total>32||Total<40)
-           out2.setText("D");
-       else
-           out2.setText("F");
-     
-    //Table Code @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        DefaultTableModel model= (DefaultTableModel)t1.getModel();
-        model.addRow(new Object[] { in1.getText(),
-                                    in2.getText(),
-                                    in6.getText(),
-                                    in7.getText(),
-                                    in8.getText(),
-                                    in9.getText(),
-                                    in10.getText(),
-                                    out1.getText(),
-                                    out2.getText(),
-            
-        });
-        
+
+        if (Total > 80) {
+            out2.setText("A+");
+        } else if (Total > 74 && Total < 79) {
+            out2.setText("A");
+        } else if (Total > 69 && Total < 75) {
+            out2.setText("A-");
+        } else if (Total > 64 && Total < 70) {
+            out2.setText("B+");
+        } else if (Total > 59 && Total < 65) {
+            out2.setText("B");
+        } else if (Total > 54 && Total < 60) {
+            out2.setText("B-");
+        } else if (Total > 49 && Total < 55) {
+            out2.setText("C+");
+        } else if (Total > 39 && Total < 50) {
+            out2.setText("C");
+        } else if (Total > 32 && Total < 40) {
+            out2.setText("D");
+        } else {
+            out2.setText("F");
+        }
+
+        //Table Code @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        DefaultTableModel model = (DefaultTableModel) t1.getModel();
+        model.addRow(new Object[]{in1.getText(),
+            in2.getText(),
+            in6.getText(),
+            in7.getText(),
+            in8.getText(),
+            in9.getText(),
+            in10.getText(),
+            out1.getText(),
+            out2.getText(),});
+
         //File Save@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         try {
-            FileWriter fw = new FileWriter("info.txt", true);
-            PrintWriter pw = new PrintWriter(fw);
+            File file = new File("info.txt");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+
+            String ID = in1.getText().trim();
+            String Name = in2.getText().trim();
+            String Email = in3.getText().trim();
+            String Phone = in4.getText().trim();
+            //String gender  =in5.getToolTipText();
+            String CT01 = in6.getText().trim();
+            String CT02 = in7.getText().trim();
+            String Mid = in8.getText().trim();
+            String Final = in9.getText().trim();
+            String Attend = in10.getText().trim();
+            String total = out1.getText().trim();
+            String Grade = out2.getText().trim();
+            String text;
+
+            text = ID + "\t" + Name + "\t" + Email + "\t" + Phone + "\t" + CT01 + "\t" + CT02 + "\t" + Mid + "\t" + Final + "\t" + Attend + "\t" + total + "\t" + Grade;
+
+            bw.write(text);
+            bw.newLine();
+            bw.close();
             
-         String ID    =in1.getText();
-         String Name  =in2.getText();
-         String Email =in3.getText();
-         String Phone  =in4.getText();
-         String gender  =in5.getToolTipText();
-         String CT01  =in6.getText();
-         String CT02  =in7.getText();
-         String Mid   =in8.getText();
-         String Final =in9.getText();
-         String Attend =in10.getText();
-         String total=  out1.getText();
-         String Grade =  out2.getText();
-         String text;
-            
-            text=ID+" "+Name+" "+Email+" "+Phone+" "+gender+" "+CT01+" "+CT02+" "+Mid+" "+Final+" "+Attend+" "+Total+" "+Grade;
-            
-        pw.println(text);
-        pw.close();
-        //JOptionPane.showMessageDialog(this, "Save:)");
-       
-       
-            
+            //Saved data into file
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error:(");
         }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Error:(");
-        }
-        
-         //info Clear@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-              in1.setText("");
-              in2.setText("");
-              in3.setText("");
-              in4.setText("");
-              in5.setToolTipText("");
-              in6.setText("");
-              in7.setText("");
-              in8.setText("");
-              in9.setText("");
-              in10.setText("");
-              out1.setText("");
-              out2.setText("");
+
+        //info Clear@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        in1.setText("");
+        in2.setText("");
+        in3.setText("");
+        in4.setText("");
+        in5.setToolTipText("");
+        in6.setText("");
+        in7.setText("");
+        in8.setText("");
+        in9.setText("");
+        in10.setText("");
+        out1.setText("");
+        out2.setText("");
     }//GEN-LAST:event_b1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -616,21 +583,13 @@ public class WorkBench extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void in6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in6ActionPerformed
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_in6ActionPerformed
-
-    private void in8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_in8ActionPerformed
-
-    private void t1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_t1AncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t1AncestorAdded
-
-    private void out2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_out2ActionPerformed
+        for(int i = 0; i < course.length; i++)
+        {
+            jComboBox2.addItem(course[i]);
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
