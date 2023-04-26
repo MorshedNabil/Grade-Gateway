@@ -317,7 +317,7 @@ public class SignUp extends javax.swing.JFrame {
                     info.close();
                     // will transfer to SelectCourse from here
                     SelectCourse course = new SelectCourse();
-                    course.show();
+                    course.setVisible(true);
                     dispose();
                 } catch (Exception e) {
                     System.out.println(e);
