@@ -195,7 +195,7 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         // another jFrame will open
         SignUp newframe = new SignUp();
-        newframe.show();// to open new JFrame
+        newframe.setVisible(true);// to open new JFrame
         dispose();// to close current JFrame        
     }//GEN-LAST:event_b2ActionPerformed
 
@@ -206,11 +206,11 @@ public class LogIn extends javax.swing.JFrame {
         pass = pass01.getText();
 
         if (userName.equals("") && pass.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fillup User ID and Password properly.", "Message", 2);
+            JOptionPane.showMessageDialog(null, "Please fillup User ID and Password properly.", "Error Message", 2);
         } else if (userName.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fillup User ID properly.", "Message", 2);
+            JOptionPane.showMessageDialog(null, "Please fillup User ID properly.", "Error Message", 2);
         } else if (pass.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fillup Password properly.", "Message", 2);
+            JOptionPane.showMessageDialog(null, "Please fillup Password properly.", "Error Message", 2);
         }
         // To login, if user gave any id and pass
         if (userName.length() != 0 && pass.length() != 0) {
@@ -218,32 +218,33 @@ public class LogIn extends javax.swing.JFrame {
                 FileReader fr = new FileReader("Registration.txt");
                 BufferedReader br = new BufferedReader(fr);
                 Scanner scan = new Scanner(br);
-                
+                /// reading the file ///
                 String info = "";
-                while(scan.hasNextLine())
-                {
+                while (scan.hasNextLine()) {
                     info = info.concat(scan.nextLine() + "\n");
                 }
                 String[] s2 = info.split("\n");
-                System.out.println(s2);
-
+                /*for (String string : s2) {
+                    System.out.println(string);
+                }*/
                 String userName_x = s2[2];
-                String pass_x = s2[3];
+                String pass_x = s2[3]; // a user inputs his info in rgistration file we will read it and the 
+                //  user name and pass will be in 2 and 3 index in our string array 
 
                 if (userName.equals(userName_x) && pass.equals(pass_x)) {
                     // new Jframe will open from here
                     WorkBench wbench = new WorkBench();
-                    wbench.show();
+                    wbench.setVisible(true);
                     scan.close();
                     dispose(); // login will dispose here...
                 } else {
-                    JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Message", 2);
+                    JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Error Message", 2);
                 }
                 scan.close();
 
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Sorry You haven't create an ID. Please Sign Up first",
-                        "Message", 2);
+                        "Error Message", 2);
             }
         }
 
@@ -265,34 +266,51 @@ public class LogIn extends javax.swing.JFrame {
 
     private void pass01KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass01KeyPressed
         // TODO add your handling code here:
-        String name, pass;
-        name = name01.getText();
-        pass = pass01.getText();
-
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (name.length() != 0 && pass.length() != 0) {
+            String userName, pass;
+            userName = name01.getText();
+            pass = pass01.getText();
+
+            if (userName.equals("") && pass.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please fillup User ID and Password properly.", "Error Message", 2);
+            } else if (userName.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please fillup User ID properly.", "Error Message", 2);
+            } else if (pass.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please fillup Password properly.", "Error Message", 2);
+            }
+            // To login, if user gave any id and pass
+            if (userName.length() != 0 && pass.length() != 0) {
                 try {
-                    FileReader fr = new FileReader("Myfile.txt");
+                    FileReader fr = new FileReader("Registration.txt");
                     BufferedReader br = new BufferedReader(fr);
                     Scanner scan = new Scanner(br);
+                    /// reading the file ///
+                    String info = "";
+                    while (scan.hasNextLine()) {
+                        info = info.concat(scan.nextLine() + "\n");
+                    }
+                    String[] s2 = info.split("\n");
+                    /*for (String string : s2) {
+                    System.out.println(string);
+                }*/
+                    String userName_x = s2[2];
+                    String pass_x = s2[3]; // a user inputs his info in rgistration file we will read it and the 
+                    //  user name and pass will be in 2 and 3 index in our string array 
 
-                    String name_x = scan.nextLine();
-                    String pass_x = scan.nextLine();
-
-                    if (name.equals(name_x) && pass.equals(pass_x)) {
+                    if (userName.equals(userName_x) && pass.equals(pass_x)) {
                         // new Jframe will open from here
                         WorkBench wbench = new WorkBench();
-                        wbench.show();
+                        wbench.setVisible(true);
                         scan.close();
                         dispose(); // login will dispose here...
                     } else {
-                        JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Message", 2);
+                        JOptionPane.showMessageDialog(null, "Oops! wrong Password. Please try again", "Error Message", 2);
                     }
                     scan.close();
 
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Sorry You haven't create an ID. Please Sign Up first",
-                            "Message", 2);
+                            "Error Message", 2);
                 }
             }
         }

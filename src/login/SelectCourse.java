@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.io.*;
+
 /**
  *
  * @author Gigabyte
@@ -51,6 +52,11 @@ public class SelectCourse extends javax.swing.JFrame {
 
         cb1.setBackground(new java.awt.Color(163, 205, 158));
         cb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(229, 241, 227));
@@ -79,20 +85,19 @@ public class SelectCourse extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(course_f, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(235, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(course_f, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,38 +133,65 @@ public class SelectCourse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-      
+
+        int a = cb1.getSelectedIndex() + 1;
         String input = course_f.getText();
         String[] individual = input.split(",");
-        String[] individual2 = new String[10];//have to declare a initial value of the array so we are giving 10
-        
-        for (int i = 0; i < individual.length; i++) {
-            try {
-                String s = individual[i].trim();
-                File file1 = new File(s + ".txt");
-                file1.createNewFile();   // Creating files using name the user have given             
-                
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Error saving string to file: " + ex.getMessage());
+        String[] individual2 = new String[a];//have to declare a initial value of the array so we are giving 10
+
+        //// combo box selection ////
+        if (a != individual.length) {
+            JOptionPane.showMessageDialog(null, "You have entered wrong number of courses\n\r"
+                    + "Please write the course names again or select the number of courses properly", "Error Message", 2);
+        } 
+        else {
+            //// creating files////
+            for (int i = 0; i < individual.length; i++) {
+                try {
+                    String s = individual[i].trim();
+                    individual2[i] = s;
+                    File file1 = new File(s + ".txt");
+                    file1.createNewFile();   // Creating files using name the user have given             
+
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "File creation error!", "Error Message", 2);
+                }
             }
+            System.out.println("File is creted");
+            /// creating a file which contains the list of courses
+            try {
+                File file = new File("course.txt");
+                file.createNewFile();
+                
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (String string : individual2) {
+                    bw.write(string);
+                    bw.newLine();
+                }
+                
+                bw.close();                
+            } 
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "File creating error", "Error Message", 2);
+            }
+
+            WorkBench wbench = new WorkBench(); // transfering the file names into workbench to set it into combobox
+            JOptionPane.showMessageDialog(null, "Welcome to Grade Gateway");
+            wbench.setVisible(true);
+            dispose();
         }
-        for(int i = 0; i < individual.length; i++)
-        {
-            individual2[i] = individual[i].trim();
-        }
-        
-        WorkBench wbench = new WorkBench(individual2); // transfering the file names into workbench to set it into combobox
-        wbench.setVisible(true);
-        dispose();
-        JOptionPane.showMessageDialog(null, "Welcome to Grade Gateway" );
-        
+
         // WorkBench will be open from here
-// TODO add your andling code here:
     }//GEN-LAST:event_b1ActionPerformed
+
+    private void cb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb1ActionPerformed
 
     /**
      * @param args the command line arguments
-    */
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

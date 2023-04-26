@@ -8,9 +8,10 @@ package login;
 import java.util.*;
 import java.awt.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -21,19 +22,28 @@ public class WorkBench extends javax.swing.JFrame {
     /**
      * Creates new form WorkBench
      */
-    String[] course = new String[10]; //global variable
     public WorkBench() {
         initComponents();
+        comboitems();
+        System.out.println("@@@");
     }
-    public WorkBench(String[] msg){
-        initComponents();
-        
-        for(int i = 0; i < msg.length; i++)
-        {
-            course[i] = msg[i];
-            
+
+    private void comboitems() {
+        String course;
+        try {
+            Scanner s = new Scanner(new BufferedReader(new FileReader("course.txt")));
+
+            while (s.hasNext()) {
+                course = s.next().trim();
+                jComboBox2.addItem(course);
+                System.out.println(course);
+            }
+            System.out.println("file nemes edded");
+        } catch (Exception e) {
         }
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,8 +79,6 @@ public class WorkBench extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         in10 = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        out1 = new javax.swing.JFormattedTextField();
-        out2 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -173,14 +181,6 @@ public class WorkBench extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(240, 240, 240));
         jLabel13.setText("Student Name   :");
 
-        out1.setEditable(false);
-        out1.setBackground(new java.awt.Color(82, 148, 113));
-        out1.setBorder(null);
-
-        out2.setEditable(false);
-        out2.setBackground(new java.awt.Color(82, 148, 113));
-        out2.setBorder(null);
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -190,7 +190,7 @@ public class WorkBench extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(58, 58, 58))
+                        .addGap(91, 91, 91))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -198,27 +198,22 @@ public class WorkBench extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))
+                        .addGap(51, 51, 51))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(out1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(out2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(in2)
                     .addComponent(in3)
@@ -262,7 +257,7 @@ public class WorkBench extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(in7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(in8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -272,12 +267,8 @@ public class WorkBench extends javax.swing.JFrame {
                     .addComponent(in9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(out1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(in10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(out2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(in10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -288,9 +279,10 @@ public class WorkBench extends javax.swing.JFrame {
 
         jComboBox2.setBackground(new java.awt.Color(163, 205, 158));
         jComboBox2.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+        jComboBox2.setMaximumRowCount(5);
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
             }
         });
 
@@ -335,6 +327,11 @@ public class WorkBench extends javax.swing.JFrame {
             }
         });
         t1.setName(""); // NOI18N
+        t1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(t1);
         if (t1.getColumnModel().getColumnCount() > 0) {
             t1.getColumnModel().getColumn(0).setMinWidth(160);
@@ -479,117 +476,405 @@ public class WorkBench extends javax.swing.JFrame {
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
 
         //Totel and Grade @@@@@@@@@@@@@@@@@@@@
-        String s1, s2, s3, s4, s5, msg;
-        s1 = in6.getText();
-        s2 = in7.getText();
-        s3 = in8.getText();
-        s4 = in9.getText();
-        s5 = in10.getText();
-
-        double Total, a1, a2, a3, a4, a5;
-        a1 = Double.parseDouble(s1);
-        a2 = Double.parseDouble(s2);
-        a3 = Double.parseDouble(s3);
-        a4 = Double.parseDouble(s4);
-        a5 = Double.parseDouble(s5);
-        Total = a1 + a2 + a3 + a4 + a5;
-        msg = Total + "";
-        out1.setText(msg);
-
-        if (Total > 80) {
-            out2.setText("A+");
-        } else if (Total > 74 && Total < 79) {
-            out2.setText("A");
-        } else if (Total > 69 && Total < 75) {
-            out2.setText("A-");
-        } else if (Total > 64 && Total < 70) {
-            out2.setText("B+");
-        } else if (Total > 59 && Total < 65) {
-            out2.setText("B");
-        } else if (Total > 54 && Total < 60) {
-            out2.setText("B-");
-        } else if (Total > 49 && Total < 55) {
-            out2.setText("C+");
-        } else if (Total > 39 && Total < 50) {
-            out2.setText("C");
-        } else if (Total > 32 && Total < 40) {
-            out2.setText("D");
+        if (in1.getText().equals("")
+                || in2.getText().equals("")
+                || in6.getText().equals("")
+                || in7.getText().equals("")
+                || in8.getText().equals("")
+                || in9.getText().equals("")
+                || in10.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Important Fields are Empty!!");
         } else {
-            out2.setText("F");
+            String s1, s2, s3, s4, s5, msg, grade;
+            s1 = in6.getText();
+            s2 = in7.getText();
+            s3 = in8.getText();
+            s4 = in9.getText();
+            s5 = in10.getText();
+
+            double Total, a1, a2, a3, a4, a5;
+            a1 = Double.parseDouble(s1);
+            a2 = Double.parseDouble(s2);
+            a3 = Double.parseDouble(s3);
+            a4 = Double.parseDouble(s4);
+            a5 = Double.parseDouble(s5);
+            Total = a1 + a2 + a3 + a4 + a5;
+            msg = Total + "";
+
+            if (Total > 80) {
+                grade = "A+";
+            } else if (Total > 74 && Total < 79) {
+                grade = "A";
+            } else if (Total > 69 && Total < 75) {
+                grade = "A-";
+            } else if (Total > 64 && Total < 70) {
+                grade = "B+";
+            } else if (Total > 59 && Total < 65) {
+                grade = "B";
+            } else if (Total > 54 && Total < 60) {
+                grade = "B-";
+            } else if (Total > 49 && Total < 55) {
+                grade = "C+";
+            } else if (Total > 39 && Total < 50) {
+                grade = "C";
+            } else if (Total > 32 && Total < 40) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+            //Table Code @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            DefaultTableModel model = (DefaultTableModel) t1.getModel();
+            model.addRow(new Object[]{in1.getText(),
+                in2.getText(), // have to add in3 in4 to the table
+                in6.getText(),
+                in7.getText(),
+                in8.getText(),
+                in9.getText(),
+                in10.getText(),
+                msg,
+                grade});
+            //File Save@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            try {
+                String fname = jComboBox2.getSelectedItem().toString();
+                File file = new File(fname);
+
+                if (file.exists()) {
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+
+                    String ID = in1.getText().trim();
+                    String Name = in2.getText().trim();
+                    String Email = in3.getText().trim();
+                    String Phone = in4.getText().trim();
+                    //String gender  =in5.getToolTipText();
+                    String CT01 = in6.getText().trim();
+                    String CT02 = in7.getText().trim();
+                    String Mid = in8.getText().trim();
+                    String Final = in9.getText().trim();
+                    String Attend = in10.getText().trim();
+                    String total = msg;
+                    String Grade = grade;
+                    String text;
+
+                    text = ID + "\t" + Name + "\t" + Email + "\t" + Phone + "\t" + CT01 + "\t" + CT02 + "\t" + Mid + "\t" + Final + "\t" + Attend + "\t" + total + "\t" + Grade;
+
+                    bw.write(text);
+                    bw.newLine();
+                    bw.close();
+                }
+                //Saved data into file
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error:(");
+            }
+
+            //info Clear@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            in1.setText("");
+            in2.setText("");
+            in3.setText("");
+            in4.setText("");
+            in5.setToolTipText("");
+            in6.setText("");
+            in7.setText("");
+            in8.setText("");
+            in9.setText("");
+            in10.setText("");
         }
 
-        //Table Code @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        DefaultTableModel model = (DefaultTableModel) t1.getModel();
-        model.addRow(new Object[]{in1.getText(),
-            in2.getText(),
-            in6.getText(),
-            in7.getText(),
-            in8.getText(),
-            in9.getText(),
-            in10.getText(),
-            out1.getText(),
-            out2.getText(),});
+    }//GEN-LAST:event_b1ActionPerformed
 
-        //File Save@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        try {
-            File file = new File("info.txt");
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String msg = null, grade = null;
+        DefaultTableModel model = (DefaultTableModel) t1.getModel();
+        if (t1.getSelectedRowCount() == 1) {
 
             String ID = in1.getText().trim();
             String Name = in2.getText().trim();
-            String Email = in3.getText().trim();
-            String Phone = in4.getText().trim();
-            //String gender  =in5.getToolTipText();
             String CT01 = in6.getText().trim();
             String CT02 = in7.getText().trim();
             String Mid = in8.getText().trim();
             String Final = in9.getText().trim();
             String Attend = in10.getText().trim();
-            String total = out1.getText().trim();
-            String Grade = out2.getText().trim();
-            String text;
 
-            text = ID + "\t" + Name + "\t" + Email + "\t" + Phone + "\t" + CT01 + "\t" + CT02 + "\t" + Mid + "\t" + Final + "\t" + Attend + "\t" + total + "\t" + Grade;
+            model.setValueAt(ID, t1.getSelectedRow(), 0);
+            model.setValueAt(Name, t1.getSelectedRow(), 1);
+            model.setValueAt(CT01, t1.getSelectedRow(), 2);
+            model.setValueAt(CT02, t1.getSelectedRow(), 3);
+            model.setValueAt(Mid, t1.getSelectedRow(), 4);
+            model.setValueAt(Final, t1.getSelectedRow(), 5);
+            model.setValueAt(Attend, t1.getSelectedRow(), 6);
 
-            bw.write(text);
-            bw.newLine();
-            bw.close();
-            
-            //Saved data into file
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error:(");
+            String s1, s2, s3, s4, s5;  /// for total marks and grade calculation
+            s1 = in6.getText();
+            s2 = in7.getText();
+            s3 = in8.getText();
+            s4 = in9.getText();
+            s5 = in10.getText();
+
+            double Total, a1, a2, a3, a4, a5;
+            a1 = Double.parseDouble(s1);
+            a2 = Double.parseDouble(s2);
+            a3 = Double.parseDouble(s3);
+            a4 = Double.parseDouble(s4);
+            a5 = Double.parseDouble(s5);
+            Total = a1 + a2 + a3 + a4 + a5;
+            msg = Total + "";
+
+            if (Total > 80) {
+                grade = "A+";
+            } else if (Total > 74 && Total < 79) {
+                grade = "A";
+            } else if (Total > 69 && Total < 75) {
+                grade = "A-";
+            } else if (Total > 64 && Total < 70) {
+                grade = "B+";
+            } else if (Total > 59 && Total < 65) {
+                grade = "B";
+            } else if (Total > 54 && Total < 60) {
+                grade = "B-";
+            } else if (Total > 49 && Total < 55) {
+                grade = "C+";
+            } else if (Total > 39 && Total < 50) {
+                grade = "C";
+            } else if (Total > 32 && Total < 40) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            model.setValueAt(msg, t1.getSelectedRow(), 7);
+            model.setValueAt(grade, t1.getSelectedRow(), 8);
+
+            JOptionPane.showMessageDialog(null, "Row Updated successfully!");
+        } //if close
+        else {
+            if (t1.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Workbench is empty!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please Select a row");
+            }
         }
-
-        //info Clear@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        in1.setText("");
-        in2.setText("");
-        in3.setText("");
-        in4.setText("");
-        in5.setToolTipText("");
-        in6.setText("");
-        in7.setText("");
-        in8.setText("");
-        in9.setText("");
-        in10.setText("");
-        out1.setText("");
-        out2.setText("");
-    }//GEN-LAST:event_b1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        String searchID = in1.getText().trim();
+        String newname = in2.getText().trim();
+        String newct01 = in6.getText().trim();
+        String newct02 = in7.getText().trim();
+        String newmid = in8.getText().trim();
+        String newfinal = in9.getText().trim();
+        String newattend = in10.getText().trim();
+        String newtotal = msg;
+        String newgrade = grade;
+
+        ArrayList<String> tempArray = new ArrayList<>();
+
+        try {
+            try (FileReader fr = new FileReader("info.txt")) {
+                Scanner reader = new Scanner(fr);
+                String line;
+                String[] lineArr;
+
+                while ((line = reader.nextLine()) != null) {
+                    lineArr = line.split("\t");
+                    if (lineArr[0].equals(searchID)) {
+                        tempArray.add(
+                                "\t" + lineArr[0] + "\t"
+                                + newname + "\t"
+                                + newct01 + "\t"
+                                + newct02 + "\t"
+                                + newmid + "\t"
+                                + newfinal + "\t"
+                                + newattend + "\t"
+                                + newtotal + "\t"
+                                + newgrade
+                        );
+
+                    } else {
+                        tempArray.add(line);
+                    }
+                }
+
+                fr.close();
+            } catch (Exception e) {
+            }
+        } catch (Exception e) {
+        }
+        try {
+            try (PrintWriter pr = new PrintWriter("info.txt")) {
+                for (String str : tempArray) {
+                    pr.println(str);
+                }
+                pr.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error..");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error..");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+                DefaultTableModel model = (DefaultTableModel) t1.getModel();
+        if (t1.getSelectedRowCount() == 1) {////////////////checking if empty or not
+            model.removeRow(t1.getSelectedRow());
+
+            String searchID = in1.getText().trim();
+
+//            try {///////////reading from the file 
+//                BufferedReader reader = new BufferedReader(new FileReader("info.txt"));
+//                String line;
+//                StringBuilder sb = new StringBuilder();
+//                while ((line = reader.readLine()) != null) {
+//                    if (!line.contains(searchID)) {
+//                        sb.append(line);
+//                        sb.append("\n");
+//
+//                    }
+//                }
+//
+//                reader.close();
+//
+//                FileWriter writer = new FileWriter("info.txt");///////////writing in the file
+//                writer.write(sb.toString());
+//                writer.close();
+//
+//                JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+//
+//            } catch (IOException ex) {
+//                JOptionPane.showMessageDialog(this, "Error deleting Row " + ex.getMessage());
+//            }
+//
+            String newname = " ";
+            String newct01 = " ";
+            String newct02 = " ";
+            String newmid = " ";
+            String newfinal = " ";
+            String newattend = " ";
+            String newtotal = " ";
+            String newgrade = " ";
+
+            ArrayList<String> tempArray = new ArrayList<>();
+
+            try {
+                try (FileReader fr = new FileReader("info.txt")) {
+                    Scanner reader = new Scanner(fr);
+                    String line;
+                    String[] lineArr;
+
+                    while ((line = reader.nextLine()) != null) {
+                        lineArr = line.split("\t");
+                        if (lineArr[0].equals(searchID)) {
+                            tempArray.add(
+                                    searchID = " " + "\t"
+                                    + newname + "\t"
+                                    + newct01 + "\t"
+                                    + newct02 + "\t"
+                                    + newmid + "\t"
+                                    + newfinal + "\t"
+                                    + newattend + "\t"
+                                    + newtotal + "\t"
+                                    + newgrade
+                            );
+                            JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                        } else {
+                            tempArray.add(line);
+                        }
+                    }
+
+                    fr.close();
+                } catch (Exception e) {
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error..");
+            }
+
+            try {
+                try (PrintWriter pr = new PrintWriter("info.txt")) {
+                    for (String str : tempArray) {
+                        pr.println(str);
+
+                    }
+
+                    pr.close();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Error..");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error..");
+            }
+
+        } //if close
+        else {
+            if (t1.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Workbench is empty!!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please Select a row plzz!!");
+            }
+        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
         // TODO add your handling code here:
-        for(int i = 0; i < course.length; i++)
-        {
-            jComboBox2.addItem(course[i]);
+        System.out.println("Selected index: " + jComboBox2.getSelectedIndex());
+        if (jComboBox2.getSelectedIndex() > -1) {
+            try {
+                String file = jComboBox2.getSelectedItem().toString();
+                System.out.println(file);
+                File f = new File(file);
+                if (f.exists()) {
+                    BufferedReader br = new BufferedReader(new FileReader(f));
+
+                    DefaultTableModel model = (DefaultTableModel) t1.getModel();
+                    //// reading the lines of the file ////
+                    Object[] lines = br.lines().toArray();
+                    // separating the read lines using delimiter tab and saving them in a string array
+                    // which will be added in the row of the table
+                    for (int i = 0; i < lines.length; i++) {
+                        String[] row = lines[i].toString().split("\t");
+                        model.addRow(row);
+                    }
+                    br.close();
+                }
+
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "File not found!", "Error Message", 2);
+            } catch (IOException ex) {
+                Logger.getLogger(WorkBench.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jComboBox2MouseClicked
+
+    private void t1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t1MouseClicked
+        // TODO add your handling code here:
+                DefaultTableModel model = (DefaultTableModel) t1.getModel();
+
+        String ID = t1.getValueAt(t1.getSelectedRow(), 0).toString();
+        String Name = t1.getValueAt(t1.getSelectedRow(), 1).toString();
+        //String Email =t1.getValueAt(t1.getSelectedRow(), 0).toString();
+        //String Phone = t1.getValueAt(t1.getSelectedRow(), 0).toString();
+        //String gender  =in5.getToolTipText();
+        String CT01 = t1.getValueAt(t1.getSelectedRow(), 2).toString();
+        String CT02 = t1.getValueAt(t1.getSelectedRow(), 3).toString();
+        String Mid = t1.getValueAt(t1.getSelectedRow(), 4).toString();
+        String Final = t1.getValueAt(t1.getSelectedRow(), 5).toString();
+        String Attend = t1.getValueAt(t1.getSelectedRow(), 6).toString();;
+        String total = t1.getValueAt(t1.getSelectedRow(), 7).toString();
+        String Grade = t1.getValueAt(t1.getSelectedRow(), 8).toString();
+
+        in1.setText(ID);
+        in2.setText(Name);
+        in6.setText(CT01);
+        in7.setText(CT02);
+        in8.setText(Mid);
+        in9.setText(Final);
+        in10.setText(Attend);
+    }//GEN-LAST:event_t1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -640,7 +925,7 @@ public class WorkBench extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField in9;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private static javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -663,8 +948,6 @@ public class WorkBench extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField out1;
-    private javax.swing.JTextField out2;
     private javax.swing.JTable t1;
     // End of variables declaration//GEN-END:variables
 }
