@@ -18,6 +18,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Grade Gateway"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -466,7 +467,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="531" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="530" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -483,7 +484,9 @@
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="jComboBox2" min="-2" pref="169" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="data_bt" min="-2" pref="130" max="-2" attributes="0"/>
+                          <EmptySpace pref="510" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -494,7 +497,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                                  <Component id="jComboBox2" pref="30" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jComboBox2" alignment="3" pref="30" max="32767" attributes="0"/>
+                                      <Component id="data_bt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Component id="jLabel11" max="32767" attributes="0"/>
                           </Group>
@@ -525,13 +531,18 @@
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jComboBox2MouseClicked"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
                   </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="data_bt">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Show Data"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="data_btActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -633,9 +644,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel12" pref="435" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="b1" min="-2" pref="122" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jButton6" min="-2" pref="155" max="-2" attributes="0"/>
@@ -653,7 +662,6 @@
                           <Component id="jButton5" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="jButton6" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="b1" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
@@ -702,17 +710,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b1ActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Courier New" size="16" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f0" green="f0" red="f0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Someone or something that is famous is very well known"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

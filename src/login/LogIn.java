@@ -230,7 +230,7 @@ public class LogIn extends javax.swing.JFrame {
                 String userName_x = s2[2];
                 String pass_x = s2[3]; // a user inputs his info in rgistration file we will read it and the 
                 //  user name and pass will be in 2 and 3 index in our string array 
-
+                
                 if (userName.equals(userName_x) && pass.equals(pass_x)) {
                     // new Jframe will open from here
                     WorkBench wbench = new WorkBench();
